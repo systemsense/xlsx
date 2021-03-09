@@ -61,9 +61,13 @@ var process_wb = (function() {
 
 	var to_html = function to_html(workbook) {
 		HTMLOUT.innerHTML = "";
+		var i = 0;
 		workbook.SheetNames.forEach(function(sheetName) {
 			var htmlstr = X.write(workbook, {sheet:sheetName, type:'string', bookType:'html'});
+			HTMLOUT.innerHTML += "<div id=\""+i+"\"><b>"+sheetName+"</b>"
 			HTMLOUT.innerHTML += htmlstr;
+			HTMLOUT.innerHTML += "</div>"
+			i++;
 		});
 		return "";
 	};
