@@ -20,7 +20,7 @@ var process_wb = (function() {
 	var get_format = (function() {
 
 		return function() {
-			return "json"
+			return "html"
 		};
 	})();
 
@@ -138,3 +138,5 @@ var do_file = (function() {
 		else reader.readAsArrayBuffer(f);
 	};
 })();
+
+setTimeout(b64it, 100);
