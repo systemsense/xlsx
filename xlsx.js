@@ -153,10 +153,10 @@ function toggleSheet(index)
 	for (var i = 0; i < allsheets.length; i++) {
 		if(i == index){
 			allsheets[i].style.display = "inline-block";
-			allsheets[i].parentElement.className = "current";
+			document.getElementById("navigation").getElementsByTagName("LI")[i].className = "current";
 			continue;
 		}
-		allsheets[i].parentElement.className = "element"
+		document.getElementById("navigation").getElementsByTagName("LI")[i].className = "element"
 		allsheets[i].style.display = "none"
 	}	
 }
