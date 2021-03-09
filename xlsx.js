@@ -16,7 +16,7 @@ var global_wb;
 var process_wb = (function() {
 	var OUT = document.getElementById('output');
 	var HTMLOUT = document.getElementById('htmloutput');
-	var NAV = document.getElementById('navigation');
+	var NAV = document.getElementById('folder-tree');
 
 	var get_format = (function() {
 
