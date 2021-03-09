@@ -66,10 +66,8 @@ var process_wb = (function() {
 		var i = 0;
 		workbook.SheetNames.forEach(function(sheetName) {
 			var htmlstr = X.write(workbook, {sheet:sheetName, type:'string', bookType:'html'});
-			NAV.innerHTML += "<a href=\"#v\" onclick=\"toggleSheet("+i+")\">"+sheetName + "&#8594;</a>&nbsp;"
-			HTMLOUT.innerHTML += "<div id=\""+i+"\" style=\"display:none\" class=\"sheetsep\">"
-			HTMLOUT.innerHTML += htmlstr;
-			HTMLOUT.innerHTML += "</div>"
+			NAV.innerHTML += "<a href=\"#v\" onclick=\"toggleSheet("+i+")\">"+sheetName + "&#8594;</a>&nbsp;&nbsp;&nbsp;"
+			HTMLOUT.innerHTML += "<div style=\"display:none\" class=\"sheets\">"+ htmlstr +"</div>"
 			i++;
 		});
 		return "";
