@@ -154,6 +154,6 @@ function toggleSheet(index)
 var allsheets = document.getElementsByClassName("sheets");
 for (var i = 0; i < allsheets.length; i++) {
    if(i == index){ document.getElementsByClassName("sheets")[i].style.display = "inline-block"; continue;}
-	document.getElementsByClassName("sheets")[i].style.display = "none"
-	
+   document.getElementsByClassName("sheets")[i].style.display = "none"
+   }	
 }
