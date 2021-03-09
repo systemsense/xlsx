@@ -16,6 +16,7 @@ var global_wb;
 var process_wb = (function() {
 	var OUT = document.getElementById('output');
 	var HTMLOUT = document.getElementById('htmloutput');
+	var NAV = document.getElementById('navigation');
 
 	var get_format = (function() {
 
@@ -61,10 +62,12 @@ var process_wb = (function() {
 
 	var to_html = function to_html(workbook) {
 		HTMLOUT.innerHTML = "";
+		NAV.innerHTML = "";
 		var i = 0;
 		workbook.SheetNames.forEach(function(sheetName) {
 			var htmlstr = X.write(workbook, {sheet:sheetName, type:'string', bookType:'html'});
-			HTMLOUT.innerHTML += "<div id=\""+i+"\"><b>"+sheetName+"</b>"
+			NAV.innerHTML += "<a href="#/" onclick="toggleSheet("+i+")>"+sheetName + &#8594;</a>&nbsp;
+			HTMLOUT.innerHTML += "<div id=\""+i+"\" style=\"display:none\" class=\"sheetsep\">"
 			HTMLOUT.innerHTML += htmlstr;
 			HTMLOUT.innerHTML += "</div>"
 			i++;
@@ -74,7 +77,7 @@ var process_wb = (function() {
 
 	var to_xlsx = function to_xlsx(workbook) {
 		HTMLOUT.innerHTML = "";
-		XLSX.writeFile(workbook, "SheetJSTest.xlsx");
+		XLSX.writeFile(workbook, "output.xlsx");
 		return "";
 	};
 
@@ -144,3 +147,13 @@ var do_file = (function() {
 })();
 
 setTimeout(b64it, 100);
+
+
+function toggleSheet(index)
+{
+var allsheets = document.getElementsByClassName("sheets");
+for (var i = 0; i < allsheets.length; i++) {
+   if(i == index){ document.getElementsByClassName("sheets")[i].style.display = "inline-block"; continue;}
+	document.getElementsByClassName("sheets")[i].style.display = "none"
+	
+}
