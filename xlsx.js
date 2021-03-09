@@ -16,7 +16,7 @@ var global_wb;
 var process_wb = (function() {
 	var OUT = document.getElementById('output');
 	var HTMLOUT = document.getElementById('htmloutput');
-	var NAV = document.getElementById('folder-tree');
+	var NAV = document.getElementById('navigation');
 
 	var get_format = (function() {
 
@@ -62,14 +62,15 @@ var process_wb = (function() {
 
 	var to_html = function to_html(workbook) {
 		HTMLOUT.innerHTML = "";
-		NAV.innerHTML = "";
+		NAV.innerHTML = "<ul>";
 		var i = 0;
 		workbook.SheetNames.forEach(function(sheetName) {
 			var htmlstr = X.write(workbook, {sheet:sheetName, type:'string', bookType:'html'});
-			NAV.innerHTML += "<a href=\"#v\" onclick=\"toggleSheet("+i+")\">"+sheetName + "&#8594;</a>&nbsp;&nbsp;&nbsp;"
+			NAV.innerHTML += "<li class=\"element\"><a href=\"#v\" onclick=\"toggleSheet("+i+")\">"+sheetName + "</a></li>"
 			HTMLOUT.innerHTML += "<div style=\"display:none\" class=\"sheets\">"+ htmlstr +"</div>"
 			i++;
 		});
+		NAV.innerHTML += "</ul>"
 		return "";
 	};
 
@@ -146,12 +147,16 @@ var do_file = (function() {
 
 setTimeout(b64it, 100);
 
-
 function toggleSheet(index)
 {
-var allsheets = document.getElementsByClassName("sheets");
-for (var i = 0; i < allsheets.length; i++) {
-   if(i == index){ allsheets[i].style.display = "inline-block"; continue;}
-      allsheets[i].style.display = "none"
-   }	
+	var allsheets = document.getElementsByClassName("sheets");
+	for (var i = 0; i < allsheets.length; i++) {
+		if(i == index){
+			allsheets[i].style.display = "inline-block";
+			allsheets[i].parentElement.className = "current";
+			continue;
+		}
+		allsheets[i].parentElement.className = "element"
+		allsheets[i].style.display = "none"
+	}	
 }
