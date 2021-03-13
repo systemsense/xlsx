@@ -102,7 +102,7 @@ var b64it = window.b64it = (function() {
 	
 	return function b64it() {
 		if(typeof console !== 'undefined') console.log("onload", new Date());
-		var wb = X.read(raw, {type:'base64', WTF:false});
+		var wb = X.read(raw, {type:'base64', WTF:false, cellStyles:true, cellHTML:true});
 		process_wb(wb);
 	};
 })();
